@@ -62,7 +62,17 @@ export default function ShopPage() {
               key={item.title}
               className="rounded-3xl border border-border bg-card p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="text-5xl">{item.emoji}</div>
+              {item.image ? (
+  <div className="mb-5 overflow-hidden rounded-2xl">
+    <img
+      src={item.image}
+      alt={item.title}
+      className="h-64 w-full object-cover"
+    />
+  </div>
+) : (
+  <div className="text-5xl">{item.emoji}</div>
+)}
 
               <h2 className="mt-5 font-serif text-2xl font-bold">
                 {item.title}
