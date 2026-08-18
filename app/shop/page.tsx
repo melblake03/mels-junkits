@@ -6,7 +6,7 @@ export default function ShopPage() {
       description:
         "Stylish handmade lanyards designed to brighten your workday while showing off your unique style.",
       price: "Starting at $18",
-      image: "/images/Lanyard.png",
+      image: "/images/ChatGPT Image Aug 16, 2026, 12_08_36 PM.png",
     },
     {
   emoji: "🪪",
