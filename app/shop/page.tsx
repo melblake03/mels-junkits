@@ -1,46 +1,46 @@
 export default function ShopPage() {
   const collections = [
-    {
-      emoji: "📿",
-      title: "Lanyards",
-      description:
-        "Stylish handmade lanyards designed to brighten your workday while showing off your unique style.",
-      price: "Starting at $18",
-      image: "/images/ChatGPT Image Aug 16, 2026, 12_08_36 PM.png",
-    },
-    {
-  emoji: "🪪",
-  title: "Badge Reels",
-  description:
-    "Cute, colorful badge reels handcrafted to add personality to your everyday routine.",
-  price: "Starting at $12",
-  image: "/images/Badge Reel.png",
-},
-    {
-  emoji: "🔑",
-  title: "Keychains",
-  description:
-    "Fun and functional keychains customized with beads, charms, and your favorite colors.",
-  price: "Starting at $10",
-  image: "/images/Purple Keychain Display in Bloom.png",
-},
-    {
-  emoji: "🦶",
-  title: "Anklets",
-  description:
-    "Delicate handmade anklets designed to match your personality and style.",
-  price: "Starting at $15",
-  image: "/images/Golden Beaded Charm Bracelet Flatlay.png",
-},
-    {
-      emoji: "✨",
-      title: "Freestyle Creations",
-      description:
-        "Let Mel create a completely one-of-a-kind Jun'Kit designed just for you.",
-      price: "Starting at $20",
-      image: "/images/Colorful Keychain on a Gold Stand.png",
-    },
-  ]
+  {
+    emoji: "📿",
+    title: "Lanyards",
+    description:
+      "Stylish handmade lanyards designed to brighten your workday while showing off your unique style.",
+    price: "Starting at $18",
+    image: "/images/ChatGPT Image Aug 16, 2026, 12_08_36 PM.png",
+  },
+  {
+    emoji: "🪪",
+    title: "Badge Reels",
+    description:
+      "Cute, colorful badge reels handcrafted to add personality to your everyday routine.",
+    price: "Starting at $12",
+    image: "/images/Purple Keychain Display in Bloom.png",
+  },
+  {
+    emoji: "🔑",
+    title: "Keychains",
+    description:
+      "Fun and functional keychains customized with beads, charms, and your favorite colors.",
+    price: "Starting at $10",
+    image: "/images/Elegant Multi-Charm Keychain Display.png",
+  },
+  {
+    emoji: "🦶",
+    title: "Anklets",
+    description:
+      "Delicate handmade anklets designed to match your personality and style.",
+    price: "Starting at $15",
+    image: "/images/Golden Beaded Charm Bracelet Flatlay.png",
+  },
+  {
+    emoji: "✨",
+    title: "Freestyle Creations",
+    description:
+      "Let Mel create a completely one-of-a-kind Jun'Kit designed just for you.",
+    price: "Starting at $20",
+    image: "/images/Colorful Keychain on a Gold Stand.png",
+  },
+]
 
   return (
     <main className="min-h-screen bg-background">
