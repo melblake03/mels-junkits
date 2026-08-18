@@ -6,34 +6,39 @@ export default function ShopPage() {
       description:
         "Stylish handmade lanyards designed to brighten your workday while showing off your unique style.",
       price: "Starting at $18",
+      image: "/images/Lanyard.png",
     },
     {
-      emoji: "🪪",
-      title: "Badge Reels",
-      description:
-        "Cute, colorful badge reels handcrafted to add personality to your everyday routine.",
-      price: "Starting at $12",
-    },
+  emoji: "🪪",
+  title: "Badge Reels",
+  description:
+    "Cute, colorful badge reels handcrafted to add personality to your everyday routine.",
+  price: "Starting at $12",
+  image: "/images/Badge Reel.png",
+},
     {
-      emoji: "🔑",
-      title: "Keychains",
-      description:
-        "Fun and functional keychains customized with beads, charms, and your favorite colors.",
-      price: "Starting at $10",
-    },
+  emoji: "🔑",
+  title: "Keychains",
+  description:
+    "Fun and functional keychains customized with beads, charms, and your favorite colors.",
+  price: "Starting at $10",
+  image: "/images/Purple Keychain Display in Bloom.png",
+},
     {
-      emoji: "🦶",
-      title: "Anklets",
-      description:
-        "Delicate handmade anklets designed to match your personality and style.",
-      price: "Starting at $15",
-    },
+  emoji: "🦶",
+  title: "Anklets",
+  description:
+    "Delicate handmade anklets designed to match your personality and style.",
+  price: "Starting at $15",
+  image: "/images/Golden Beaded Charm Bracelet Flatlay.png",
+},
     {
       emoji: "✨",
       title: "Freestyle Creations",
       description:
         "Let Mel create a completely one-of-a-kind Jun'Kit designed just for you.",
       price: "Starting at $20",
+      image: "/images/Colorful Keychain on a Gold Stand.png",
     },
   ]
 
@@ -62,7 +67,13 @@ export default function ShopPage() {
               key={item.title}
               className="rounded-3xl border border-border bg-card p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="text-5xl">{item.emoji}</div>
+              <div className="mb-5 overflow-hidden rounded-2xl">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-64 w-full object-cover"
+                />
+              </div>
 
               <h2 className="mt-5 font-serif text-2xl font-bold">
                 {item.title}
