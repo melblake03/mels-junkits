@@ -55,14 +55,24 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <Button
-            nativeButton={false}
-            className="hidden h-10 rounded-full px-5 text-sm lg:inline-flex"
-            render={<a href="/shop" />}
-          >
-            <ShoppingBag className="size-4" />
-            Shop Now
-          </Button>
+  <Button
+    nativeButton={false}
+    variant="outline"
+    className="hidden h-10 rounded-full px-5 text-sm lg:inline-flex"
+    render={<a href="/cart" />}
+  >
+    <ShoppingBag className="size-4" />
+    Cart
+  </Button>
+
+  <Button
+    nativeButton={false}
+    className="hidden h-10 rounded-full px-5 text-sm lg:inline-flex"
+    render={<a href="/shop" />}
+  >
+    <ShoppingBag className="size-4" />
+    Shop Now
+  </Button>
           <Button
             variant="ghost"
             size="icon"
