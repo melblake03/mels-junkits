@@ -1,3 +1,4 @@
+import AddToCart from "@/components/add-to-cart"
 const products = {
   lanyards: [
     {
@@ -108,9 +109,11 @@ export default async function CategoryPage({
                   {product.price}
                 </p>
 
-                <button className="mt-6 w-full rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90">
-                  Add to Order
-                </button>
+                <AddToCart
+                  name={product.name}
+                  price={product.price}
+                  image={product.image}
+                />
               </div>
             </div>
           ))}
