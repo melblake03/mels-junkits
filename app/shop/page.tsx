@@ -88,9 +88,12 @@ export default function ShopPage() {
                   {item.price}
                 </p>
 
-                <button className="mt-6 w-full rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90">
-                  View Collection
-                </button>
+                <a
+  href={`/shop/${item.title.toLowerCase().replaceAll(" ", "-")}`}
+  className="mt-6 block w-full rounded-full bg-primary px-6 py-3 text-center font-medium text-primary-foreground transition hover:opacity-90"
+>
+  View Collection
+</a>
               </div>
             </div>
           ))}
