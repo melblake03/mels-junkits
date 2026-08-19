@@ -3,6 +3,7 @@ export default function ShopPage() {
     {
       emoji: "📿",
       title: "Lanyards",
+      slug: "lanyards",
       description:
         "Stylish handmade lanyards designed to brighten your workday while showing off your unique style.",
       price: "Starting at $18",
@@ -11,6 +12,7 @@ export default function ShopPage() {
     {
       emoji: "🪪",
       title: "Badge Reels",
+      slug: "badge-reel",
       description:
         "Cute, colorful badge reels handcrafted to add personality to your everyday routine.",
       price: "Starting at $12",
@@ -19,6 +21,7 @@ export default function ShopPage() {
     {
       emoji: "🔑",
       title: "Keychains",
+      slug: "keychains",
       description:
         "Fun and functional keychains customized with beads, charms, and your favorite colors.",
       price: "Starting at $10",
@@ -27,6 +30,7 @@ export default function ShopPage() {
     {
       emoji: "🦶",
       title: "Anklets",
+      slug: "anklets",
       description:
         "Delicate handmade anklets designed to match your personality and style.",
       price: "Starting at $15",
@@ -35,6 +39,7 @@ export default function ShopPage() {
     {
       emoji: "✨",
       title: "Freestyle Creations",
+      slug: "freestyle-creations",
       description:
         "Let Mel create a completely one-of-a-kind Jun'Kit designed just for you.",
       price: "Starting at $20",
@@ -89,7 +94,7 @@ export default function ShopPage() {
                 </p>
 
                 <a
-  href={`/shop/${item.title.toLowerCase().replaceAll(" ", "-")}`}
+ href={`/shop/category/${item.slug}`}
   className="mt-6 block w-full rounded-full bg-primary px-6 py-3 text-center font-medium text-primary-foreground transition hover:opacity-90"
 >
   View Collection
