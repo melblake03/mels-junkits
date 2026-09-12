@@ -5,8 +5,11 @@ export async function POST(request: Request) {
     const body = await request.json()
 
     const items = body.items
+    const customer = body.customer
+    const deliveryMethod = body.deliveryMethod
+    const shippingAddress = body.shippingAddress
 
-    if (!items || !Array.isArray(items) || items.length === 0) {
+    if (!Array.isArray(items) || items.length === 0) {
       return NextResponse.json(
         { error: "Your cart is empty." },
         { status: 400 }
@@ -32,12 +35,56 @@ export async function POST(request: Request) {
       },
     }))
 
+    // Shipping is $5 for shipping orders and $0 for local pickup.
+    const shippingFee = deliveryMethod === "shipping" ? 500 : 0
+
+    if (shippingFee > 0) {
+      lineItems.push({
+        name: "Shipping",
+        quantity: "1",
+        base_price_money: {
+          amount: shippingFee,
+          currency: "USD",
+        },
+      })
+    }
+
     const origin = new URL(request.url).origin
 
     const squareBaseUrl =
       process.env.SQUARE_ENVIRONMENT === "production"
         ? "https://connect.squareup.com"
         : "https://connect.squareupsandbox.com"
+
+    const checkoutOptions: Record<string, unknown> = {
+      redirect_url: `${origin}/checkout?success=true`,
+      merchant_support_email: "hello@melsjunkits.com",
+    }
+
+    // Let Square collect a shipping address when shipping is selected.
+    if (deliveryMethod === "shipping") {
+      checkoutOptions.ask_for_shipping_address = true
+    }
+
+    const requestBody: Record<string, unknown> = {
+      idempotency_key: crypto.randomUUID(),
+
+      order: {
+        location_id: locationId,
+        line_items: lineItems,
+      },
+
+      checkout_options: checkoutOptions,
+
+      payment_note: "Mel's Jun'Kits online order",
+    }
+
+    // Pre-fill the buyer's email when available.
+    if (customer?.email) {
+      requestBody.pre_populated_data = {
+        buyer_email: customer.email,
+      }
+    }
 
     const response = await fetch(
       `${squareBaseUrl}/v2/online-checkout/payment-links`,
@@ -48,21 +95,7 @@ export async function POST(request: Request) {
           "Content-Type": "application/json",
           "Square-Version": "2026-08-19",
         },
-        body: JSON.stringify({
-          idempotency_key: crypto.randomUUID(),
-
-          order: {
-            location_id: locationId,
-
-            line_items: lineItems,
-          },
-
-          checkout_options: {
-            redirect_url: `${origin}/checkout?success=true`,
-          },
-
-          payment_note: "Mel's Jun'Kits online order",
-        }),
+        body: JSON.stringify(requestBody),
       }
     )
 
@@ -81,8 +114,19 @@ export async function POST(request: Request) {
       )
     }
 
+    const checkoutUrl = data?.payment_link?.url
+
+    if (!checkoutUrl) {
+      console.error("Square response did not include a payment URL:", data)
+
+      return NextResponse.json(
+        { error: "Square did not return a checkout link." },
+        { status: 500 }
+      )
+    }
+
     return NextResponse.json({
-      url: data.payment_link?.url,
+      url: checkoutUrl,
     })
   } catch (error) {
     console.error("Checkout error:", error)
