@@ -1,31 +1,33 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Playfair_Display, Poppins } from 'next/font/google'
 import './globals.css'
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-poppins',
-  display: 'swap',
-})
-
 export const metadata: Metadata = {
-  title: "Mel's Jun'Kits | Handmade Just for You",
-  description:
-    "Custom lanyards, badge reels, keychains, anklets, and freestyle creations handmade with love by Mel's Jun'Kits.",
+  title: "Mel's Jun'Kits | Handmade accessories for colorful lives",
+  description: "Build your one-of-one Jun'Kit with Mel's handmade accessories, made with joy in Kansas City.",
   generator: 'v0.app',
+  icons: {
+    icon: [
+      {
+        url: '/icon-light-32x32.png',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/icon-dark-32x32.png',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+    apple: '/apple-icon.png',
+  },
 }
 
 export const viewport: Viewport = {
   colorScheme: 'light',
-  themeColor: '#f7a8c4',
+  themeColor: '#f20b8f',
 }
 
 export default function RootLayout({
@@ -34,8 +36,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`bg-background ${playfair.variable} ${poppins.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en" className="bg-background">
+      <body className="antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
