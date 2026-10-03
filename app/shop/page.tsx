@@ -9,28 +9,26 @@ const shopSections = [
   {
     title: "Jun’Kit Lanyards",
     intro: "Colorful lanyards made to brighten your everyday carry.",
-    products: [
-      { name: "Lanyard Jun’Kit", image: "/lanyard-junkit.png" },
-      { name: "Cobra Lanyard", image: "/Cobra.jpg" },
-      { name: "Cobra DNA Lanyard", image: "/Cobra DNA.jpg" },
-      { name: "Stripe Lanyard", image: "/Stripe.jpg" },
-    ],
+    products: Array.from({ length: 9 }, (_, index) => ({
+      name: `Lanyard Jun’Kit ${String(index + 1).padStart(2, '0')}`,
+      image: `/shop/lanyards-${String(index + 1).padStart(2, '0')}.jpg`,
+    })),
   },
   {
     title: "Jun’Keychains",
     intro: "Tiny pops of personality for your keys, bags, and favorite things.",
-    products: [
-      { name: "Jun’Keychain", image: "/keychain-junkit.png" },
-      { name: "Heart Keychain", image: "/Heart.jpg" },
-      { name: "X Keychain", image: "/X.jpg" },
-    ],
+    products: Array.from({ length: 7 }, (_, index) => ({
+      name: `Jun’Keychain ${String(index + 1).padStart(2, '0')}`,
+      image: `/shop/keychains-${String(index + 1).padStart(2, '0')}.jpg`,
+    })),
   },
   {
     title: "Paracord Jun’Kits",
     intro: "Playful, sturdy paracord pieces handmade one colorful detail at a time.",
-    products: [
-      { name: "Paracord Jun’Kit", image: "/paracord-bracelet.png" },
-    ],
+    products: Array.from({ length: 6 }, (_, index) => ({
+      name: `Paracord Jun’Kit ${String(index + 1).padStart(2, '0')}`,
+      image: `/shop/paracord-${String(index + 1).padStart(2, '0')}.jpg`,
+    })),
   },
 ]
 
