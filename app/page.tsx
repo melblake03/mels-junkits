@@ -946,12 +946,9 @@ useEffect(() => {
 
           <nav className="site-nav">
 
-<a href="#builder">
-  Build Your Jun’Kit
-  </a>
-  <a href="/shop">
-  Shop
-  </a>
+            <a href="#builder">
+              Build Your Jun’Kit
+            </a>
 
             <a href="#about">
               About
@@ -982,221 +979,40 @@ useEffect(() => {
           HERO
       ========================================= */}
 
-   <section className="hero">
-  <div className="hero-content">
-    <p className="eyebrow">
-      HANDMADE • CUSTOM • ONE-OF-A-KIND
-    </p>
+      <section className="hero">
 
-    <h1>
-      Made to Be
-      <br />
-      <span>Yours.</span>
-    </h1>
+        <div className="hero-content">
 
-    <p className="hero-text">
-      Colorful handmade accessories designed by you,
-      customized by you, and made with love in Kansas City.
-    </p>
+          <p className="eyebrow">
+            HANDMADE • CUSTOM • ONE-OF-A-KIND
+          </p>
 
-    <div className="hero-actions">
-      <a href="#featured" className="hero-button">
-        Shop Jun’Kits ✨
-      </a>
+          <h1>
+            Build Your
+            <br />
+            <span>
+              Jun’Kit™
+            </span>
+          </h1>
 
-      <a href="#builder" className="hero-button hero-button-secondary">
-        Build Yours 💕
-      </a>
-    </div>
+          <p className="hero-text">
+            Pick your colors, add your
+            personality, and create something
+            that is completely yours.
+          </p>
 
-    <div className="hero-badges">
-      <span>♡ Handmade in KC</span>
-      <span>♡ Custom Made</span>
-      <span>♡ Ships Nationwide</span>
-    </div>
-  </div>
+          <a
+            href="#builder"
+            className="hero-button"
+          >
+            Start Building 💕
+          </a>
 
-  <div className="hero-visual">
-    <span className="hero-sparkle sparkle-one">✦</span>
-    <span className="hero-sparkle sparkle-two">♡</span>
-    <span className="hero-sparkle sparkle-three">✦</span>
+        </div>
 
-    <div className="hero-product hero-product-main">
-      <img
-        src="/beaded-junkit.png"
-        alt="Beaded Jun’Kit"
-      />
-    </div>
-
-    <div className="hero-product hero-product-small hero-product-left">
-      <img
-        src="/keychain-junkit.png"
-        alt="Jun’Keychain"
-      />
-    </div>
-
-    <div className="hero-product hero-product-small hero-product-right">
-      <img
-        src="/junklet.png"
-        alt="Jun’Klet"
-      />
-    </div>
-  </div>
-</section>
-
-{/* =========================================
-    SHOP BY CATEGORY
-========================================= */}
-
-<section className="category-section">
-  <p className="section-kicker">SHOP THE COLLECTION ✨</p>
-
-  <h2>Find Your Jun’Kit 💕</h2>
-
-  <p>
-    Cute, colorful, handmade accessories made to add a little
-    personality to your everyday.
-  </p>
-
-  <div className="category-grid">
-
-    <a href="/shop" className="category-card">
-      <img src="/beaded-junkit.png" alt="Beaded Jun’Kit" />
-      <strong>Beaded Jun’Kit</strong>
-      <span>Shop Now →</span>
-    </a>
-
-    <a href="/shop" className="category-card">
-      <img src="/junklet.png" alt="Jun’Klet" />
-      <strong>Jun’Klet</strong>
-      <span>Shop Now →</span>
-    </a>
-
-    <a href="/shop" className="category-card">
-      <img src="/keychain-junkit.png" alt="Jun’Keychain" />
-      <strong>Jun’Keychain</strong>
-      <span>Shop Now →</span>
-    </a>
-
-    <a href="/shop" className="category-card">
-      <img src="/lanyard-junkit.png" alt="Jun’Kit Lanyard" />
-      <strong>Jun’Kit Lanyard</strong>
-      <span>Shop Now →</span>
-    </a>
-
-    <a href="/shop" className="category-card">
-      <img src="/badge-reel (2).png" alt="Badge Reel Jun’Kit" />
-      <strong>Badge Reel</strong>
-      <span>Shop Now →</span>
-    </a>
-
-    <a href="/shop" className="category-card">
-      <img src="/paracord-bracelet.png" alt="Paracord Jun’Kit" />
-      <strong>Paracord Jun’Kit</strong>
-      <span>Shop Now →</span>
-    </a>
-
-  </div>
-</section>
+      </section>
 
 
-{/* =========================================
-    FEATURED JUN'KITS
-========================================= */}
-
-<section id="featured" className="featured-section">
-
-  <p className="section-kicker">MADE WITH LOVE 💗</p>
-
-  <h2>Featured Jun’Kits</h2>
-
-  <p>
-    A few of our favorite handmade pieces.
-    Want to make yours different? Build your own Jun’Kit!
-  </p>
-
-  <div className="featured-grid">
-
-    <article className="featured-card">
-      <div className="featured-card-image">
-        <img
-          src="/beaded-junkit.png"
-          alt="Beaded Jun’Kit"
-        />
-      </div>
-
-      <div className="featured-card-content">
-        <h3>Beaded Jun’Kit</h3>
-        <p>
-          A colorful handmade Jun’Kit designed to be
-          completely your own.
-        </p>
-
-        <div className="featured-price">$20</div>
-
-        <a href="/shop" className="featured-card-button">
-          Shop Now →
-        </a>
-      </div>
-    </article>
-
-
-    <article className="featured-card">
-      <div className="featured-card-image">
-        <img
-          src="/keychain-junkit.png"
-          alt="Jun’Keychain"
-        />
-      </div>
-
-      <div className="featured-card-content">
-        <h3>Jun’Keychain</h3>
-        <p>
-          Add a little personality to your keys,
-          bag, or everyday essentials.
-        </p>
-
-        <div className="featured-price">$10</div>
-
-        <a href="/shop" className="featured-card-button">
-          Shop Now →
-        </a>
-      </div>
-    </article>
-
-
-    <article className="featured-card">
-      <div className="featured-card-image">
-        <img
-          src="/lanyard-junkit.png"
-          alt="Jun’Kit Lanyard"
-        />
-      </div>
-
-      <div className="featured-card-content">
-        <h3>Jun’Kit Lanyard</h3>
-        <p>
-          Keep your essentials close with a handmade
-          lanyard made just for you.
-        </p>
-
-        <div className="featured-price">$15</div>
-
-        <a href="/shop" className="featured-card-button">
-          Shop Now →
-        </a>
-      </div>
-    </article>
-
-  </div>
-
-  <div className="featured-builder-link">
-    <a href="#builder" className="hero-button">
-      Build Your Own Jun’Kit™ 💕
-    </a>
-  </div>
-
-</section>
       {/* =========================================
           BUILDER
       ========================================= */}
