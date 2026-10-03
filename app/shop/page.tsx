@@ -255,15 +255,16 @@ export default function ShopPage() {
           SHOP HERO
       ========================================= */}
 
-    <section
-  className="shop-hero"
+  <section
+className="shop-hero"
   aria-labelledby="shop-title"
->
-  <div className="shop-hero-logo">
-    <img
-      src="/mels-logo.png"
-      alt="Mel's Jun'Kits"
-    />
+  >
+  <img
+  className="shop-hero-image"
+  src="/mels-logo.png"
+  alt="Mel's Jun'Kits"
+  />
+<div className="shop-hero-logo">
   </div>
 
   <div className="shop-hero-copy">
