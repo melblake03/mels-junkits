@@ -946,9 +946,12 @@ useEffect(() => {
 
           <nav className="site-nav">
 
-            <a href="#builder">
-              Build Your Jun’Kit
-            </a>
+<a href="#builder">
+  Build Your Jun’Kit
+  </a>
+  <a href="/shop">
+  Shop
+  </a>
 
             <a href="#about">
               About
