@@ -255,31 +255,38 @@ export default function ShopPage() {
           SHOP HERO
       ========================================= */}
 
-      <section
-        className="shop-hero"
-        aria-labelledby="shop-title"
-      >
+    <section
+  className="shop-hero"
+  aria-labelledby="shop-title"
+>
+  <div className="shop-hero-logo">
+    <img
+      src="/mels-logo.png"
+      alt="Mel's Jun'Kits"
+    />
+  </div>
 
-        <span className="section-label">
-          ✦ A little something cute ✦
-        </span>
+  <div className="shop-hero-copy">
+    <span className="section-label">
+      ✦ A little something cute ✦
+    </span>
 
-        <h1 id="shop-title">
-          Shop Mel&apos;s Jun&apos;Kits
-        </h1>
+    <h1 id="shop-title">
+      Shop Mel&apos;s Jun&apos;Kits
+    </h1>
 
-        <p>
-          Find a handmade favorite, then make it
-          yours with a little extra joy.
-        </p>
+    <p>
+      Find a handmade favorite, then make it
+      yours with a little extra joy.
+    </p>
 
-        <div className="shop-hero-hearts">
-          <span>♡</span>
-          <span>✦</span>
-          <span>♡</span>
-        </div>
-
-      </section>
+    <div className="shop-hero-hearts">
+      <span>♡</span>
+      <span>✦</span>
+      <span>♡</span>
+    </div>
+  </div>
+</section>
 
 
       {/* =========================================
