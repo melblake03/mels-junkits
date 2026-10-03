@@ -1,39 +1,78 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { X } from 'lucide-react'
 import './shop.css'
+
+type ReadyMadeProduct = {
+  id: string
+  name: string
+  image: string
+  price: number
+  productId: 'lanyard' | 'keychain' | 'paracord'
+}
 
 const shopSections = [
   {
     title: "Jun’Kit Lanyards",
     intro: "Colorful lanyards made to brighten your everyday carry.",
     products: Array.from({ length: 9 }, (_, index) => ({
+      id: `lanyard-${index + 1}`,
       name: `Lanyard Jun’Kit ${String(index + 1).padStart(2, '0')}`,
       image: `/shop/lanyards-${String(index + 1).padStart(2, '0')}.jpg`,
+      price: 28,
+      productId: 'lanyard',
     })),
   },
   {
     title: "Jun’Keychains",
     intro: "Tiny pops of personality for your keys, bags, and favorite things.",
     products: Array.from({ length: 7 }, (_, index) => ({
+      id: `keychain-${index + 1}`,
       name: `Jun’Keychain ${String(index + 1).padStart(2, '0')}`,
       image: `/shop/keychains-${String(index + 1).padStart(2, '0')}.jpg`,
+      price: 18,
+      productId: 'keychain',
     })),
   },
   {
     title: "Paracord Jun’Kits",
     intro: "Playful, sturdy paracord pieces handmade one colorful detail at a time.",
     products: Array.from({ length: 6 }, (_, index) => ({
+      id: `paracord-${index + 1}`,
       name: `Paracord Jun’Kit ${String(index + 1).padStart(2, '0')}`,
       image: `/shop/paracord-${String(index + 1).padStart(2, '0')}.jpg`,
+      price: 24,
+      productId: 'paracord',
     })),
   },
 ]
 
 export default function ShopPage() {
-  const [activeImage, setActiveImage] = useState<{ name: string; image: string } | null>(null)
+  const [activeImage, setActiveImage] = useState<ReadyMadeProduct | null>(null)
+  const [inventory, setInventory] = useState<Record<string, number>>({})
+  const [cartMessage, setCartMessage] = useState('')
+
+  useEffect(() => {
+    const savedInventory = window.localStorage.getItem('mels-junkits-ready-made-inventory')
+    setInventory(savedInventory ? JSON.parse(savedInventory) : {})
+  }, [])
+
+  function addReadyMadeToCart(product: ReadyMadeProduct) {
+    if (inventory[product.id] === 0) return
+    const cart = JSON.parse(window.localStorage.getItem('mels-junkits-cart') || '[]')
+    if (cart.some((item: { id: string }) => item.id === product.id)) {
+      setInventory((current) => ({ ...current, [product.id]: 0 }))
+      return
+    }
+    cart.push({ id: product.id, productId: product.productId, productName: product.name, image: product.image, size: '', colors: [], letMelDesign: false, pattern: '', hardware: '', beads: '', charms: [], charmQuantity: 0, personalization: [], basePrice: product.price, designFee: 0, charmTotal: 0, personalizationTotal: 0, unitPrice: product.price, quantity: 1 })
+    window.localStorage.setItem('mels-junkits-cart', JSON.stringify(cart))
+    const nextInventory = { ...inventory, [product.id]: 0 }
+    setInventory(nextInventory)
+    window.localStorage.setItem('mels-junkits-ready-made-inventory', JSON.stringify(nextInventory))
+    setCartMessage(`${product.name} added to your cart.`)
+  }
 
   return (
     <main className="shop-page">
@@ -56,6 +95,7 @@ export default function ShopPage() {
         {shopSections.map((section) => (
           <section className="shop-category" key={section.title} aria-labelledby={section.title}>
             <div className="shop-category-heading">
+              <span className="shop-ready-made-label">READY-MADE JUN’KITS</span>
               <span className="shop-sparkle">✦</span>
               <div>
                 <h2 id={section.title}>{section.title}</h2>
@@ -64,24 +104,25 @@ export default function ShopPage() {
             </div>
             <div className="shop-photo-grid">
               {section.products.map((product) => (
-                <button
-                  className="shop-photo-card"
-                  key={product.name}
-                  type="button"
-                  onClick={() => setActiveImage(product)}
-                  aria-label={`Enlarge ${product.name} photo`}
-                >
-                  <span className="shop-photo-frame">
-                    <img src={product.image} alt={product.name} loading="lazy" />
-                  </span>
-                  <strong>{product.name}</strong>
-                  <span className="shop-view-label">View photo</span>
-                </button>
+                <article className="shop-product-card" key={product.name}>
+                  <button className="shop-photo-card" type="button" onClick={() => setActiveImage(product)} aria-label={`Enlarge ${product.name} photo`}>
+                    <span className="shop-photo-frame">
+                      <img src={product.image} alt={product.name} loading="lazy" />
+                    </span>
+                    <strong>{product.name}</strong>
+                    <span className="shop-product-price">${product.price}</span>
+                    <span className={inventory[product.id] === 0 ? 'shop-sold-out' : 'shop-available'}>{inventory[product.id] === 0 ? 'SOLD OUT' : 'AVAILABLE'}</span>
+                    <span className="shop-view-label">View photo</span>
+                  </button>
+                  {inventory[product.id] !== 0 && <button className="shop-add-button" type="button" onClick={() => addReadyMadeToCart(product)}>Add to Cart</button>}
+                </article>
               ))}
             </div>
           </section>
         ))}
       </div>
+
+      {cartMessage && <p className="shop-cart-message" role="status">{cartMessage}</p>}
 
       <section className="shop-builder-callout" aria-labelledby="shop-builder-title">
         <span>Ready to make it one-of-one?</span>
