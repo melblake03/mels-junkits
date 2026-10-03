@@ -53,10 +53,29 @@ export default function ShopPage() {
   const [activeImage, setActiveImage] = useState<ReadyMadeProduct | null>(null)
   const [inventory, setInventory] = useState<Record<string, number>>({})
   const [cartMessage, setCartMessage] = useState('')
+  const [cartCount, setCartCount] = useState(0)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const savedInventory = window.localStorage.getItem('mels-junkits-ready-made-inventory')
     setInventory(savedInventory ? JSON.parse(savedInventory) : {})
+
+    const updateCartCount = () => {
+      try {
+        const cart = JSON.parse(window.localStorage.getItem('mels-junkits-cart') || '[]')
+        setCartCount(cart.reduce((total: number, item: { quantity?: number }) => total + (item.quantity || 1), 0))
+      } catch {
+        setCartCount(0)
+      }
+    }
+
+    updateCartCount()
+    window.addEventListener('storage', updateCartCount)
+    window.addEventListener('mels-junkits-cart-updated', updateCartCount)
+    return () => {
+      window.removeEventListener('storage', updateCartCount)
+      window.removeEventListener('mels-junkits-cart-updated', updateCartCount)
+    }
   }, [])
 
   function addReadyMadeToCart(product: ReadyMadeProduct) {
@@ -68,6 +87,7 @@ export default function ShopPage() {
     }
     cart.push({ id: product.id, productId: product.productId, productName: product.name, image: product.image, size: '', colors: [], letMelDesign: false, pattern: '', hardware: '', beads: '', charms: [], charmQuantity: 0, personalization: [], basePrice: product.price, designFee: 0, charmTotal: 0, personalizationTotal: 0, unitPrice: product.price, quantity: 1 })
     window.localStorage.setItem('mels-junkits-cart', JSON.stringify(cart))
+    window.dispatchEvent(new Event('mels-junkits-cart-updated'))
     const nextInventory = { ...inventory, [product.id]: 0 }
     setInventory(nextInventory)
     window.localStorage.setItem('mels-junkits-ready-made-inventory', JSON.stringify(nextInventory))
@@ -80,16 +100,58 @@ export default function ShopPage() {
         <Link href="/" className="shop-logo-link" aria-label="Mel’s Jun’Kits home">
           <img src="/mels-logo.png" alt="Mel’s Jun’Kits" />
         </Link>
-        <Link href="/#builder" className="shop-build-button">
-          Build Your Jun’Kit™
-        </Link>
+        <button
+          className="shop-menu-button"
+          type="button"
+          aria-expanded={mobileMenuOpen}
+          aria-controls="shop-navigation"
+          onClick={() => setMobileMenuOpen((open) => !open)}
+        >
+          Menu
+        </button>
+        <nav id="shop-navigation" className={`shop-navigation${mobileMenuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
+          <Link href="/#builder" onClick={() => setMobileMenuOpen(false)}>Build Your Jun’Kit™</Link>
+          <Link href="/shop" onClick={() => setMobileMenuOpen(false)}>Shop</Link>
+          <Link href="/#about" onClick={() => setMobileMenuOpen(false)}>About</Link>
+          <Link href="/#contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+          <Link className="shop-cart-button" href="/#cart" onClick={() => setMobileMenuOpen(false)}>
+            Cart ({cartCount})
+          </Link>
+        </nav>
       </header>
 
-      <section className="shop-hero" aria-labelledby="shop-title">
-        <span className="section-label">A little something cute</span>
-        <h1 id="shop-title">Shop Mel&apos;s Jun&apos;Kits</h1>
-        <p>Find a handmade favorite, then make it yours with a little extra joy.</p>
-      </section>
+      <section
+  className="shop-hero"
+  aria-labelledby="shop-title"
+>
+  <div className="shop-hero-logo">
+    <img
+      src="/mels-logo.png"
+      alt="Mel's Jun'Kits"
+    />
+  </div>
+
+  <div className="shop-hero-copy">
+    <span className="section-label">
+      ✦ A little something cute ✦
+    </span>
+
+    <h1 id="shop-title">
+      Shop Mel&apos;s Jun&apos;Kits
+    </h1>
+
+    <p>
+      Find a handmade favorite, then make it
+      yours with a little extra joy.
+    </p>
+
+    <div className="shop-hero-hearts">
+      <span>♡</span>
+      <span>✦</span>
+      <span>♡</span>
+    </div>
+  </div>
+</section>
 
       <div className="shop-sections">
         {shopSections.map((section) => (
